@@ -4,7 +4,7 @@
 FROM golang:1.15.0-alpine3.12 as stage1
 
 # Add Maintainer Info
-LABEL maintainer="Rajeev Singh <rajeevhub@gmail.com>"
+LABEL maintainer="jiraphon sa."
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
