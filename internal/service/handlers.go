@@ -19,8 +19,8 @@ func Router(db *sql.DB) *mux.Router {
 		DB: db,
 	}
 
-	r.HandleFunc("/user", curlAPI.Select).Methods("GET")
-	r.HandleFunc("/user", curlAPI.Create).Methods("POST")
+	r.HandleFunc("/v1/user", curlAPI.Select).Methods("GET")
+	r.HandleFunc("/v1/user", curlAPI.Create).Methods("POST")
 
 	return r
 }
