@@ -47,6 +47,7 @@ func (a API) Select(w http.ResponseWriter, _ *http.Request) {
 	const query = `SELECT id, name, age, create_time FROM account`
 
 	allUser := []account{}
+	
 	rows, err := a.DB.Query(query)
 	if err != nil {
 		log.Error("error:", err)

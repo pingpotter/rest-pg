@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "0045408c-c2ce-49c4-b362-2ad9a601148f",
+		"name": "test_crud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test_case_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92b29a96-7bcb-4c0a-920f-d994c77f96dd",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "req_id",
+						"value": "{{$guid}}",
+						"type": "text"
+					},
+					{
+						"key": "time",
+						"value": "{{$timestamp}}",
+						"type": "text"
+					},
+					{
+						"key": "iso",
+						"value": "{{$isoTimestamp}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"3\",\n    \"name\": \"somchai xxx\",\n    \"age\": 16\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/v1/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"user"
+					]
+				},
+				"description": "ทดสอบยิง post สำเร็จ"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

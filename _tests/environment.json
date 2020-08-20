@@ -1,0 +1,19 @@
+{
+	"id": "8b462c31-234f-4749-bd73-d5e4a15bcc6d",
+	"name": "test_pg",
+	"values": [
+		{
+			"key": "ip",
+			"value": "localhost",
+			"enabled": true
+		},
+		{
+			"key": "port",
+			"value": "8081",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-08-20T03:21:10.466Z",
+	"_postman_exported_using": "Postman/7.30.1"
+}
