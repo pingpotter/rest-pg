@@ -1,6 +1,7 @@
 package crud
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -13,6 +14,33 @@ import (
 
 func TestAPI_Create(t *testing.T) {
 
+	timeNow := time.Now()
+
+	db, mock, err := sqlmock.New()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	const query = `INSERT INTO account`
+
+	mock.ExpectExec(query).WithArgs("1", "test product", 11, timeNow).WillReturnResult(sqlmock.NewResult(1, 1))
+
+	api := API{
+		DB:      db,
+		TimeNow: timeNow,
+	}
+
+	jsonStr := []byte(`{ "id":"1", "name":"test product", "age": 11}`)
+
+	r := httptest.NewRequest("POST", "/connect", bytes.NewBuffer(jsonStr))
+	w := httptest.NewRecorder()
+	r.Header.Set("Content-Type", "application/json")
+
+	api.Create(w, r)
+
+	assert.Equal(t, http.StatusCreated, w.Code)
+	assert.Equal(t, "", w.Body.String())
 }
 
 // func TestAPI_Select(t *testing.T) {

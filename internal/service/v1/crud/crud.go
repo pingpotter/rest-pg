@@ -10,14 +10,15 @@ import (
 )
 
 type API struct {
-	DB *sql.DB
+	DB      *sql.DB
+	TimeNow time.Time
 }
 
 type account struct {
-	ID         string
-	Name       string
-	Age        int16
-	CreateTime time.Time
+	ID         string    `json:"id"`
+	Name       string    `json:"name"`
+	Age        int16     `json:"age"`
+	CreateTime time.Time `json:"create_time"`
 }
 
 // Create create db
@@ -30,9 +31,9 @@ func (a API) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	const query = `INSERT INTO account (id, name, age, create_time)VALUES ($1, $2, $3, $4)`
+	const query = `INSERT INTO account (id, name, age, create_time) VALUES ($1, $2, $3, $4)`
 
-	_, err := a.DB.Exec(query, u.ID, u.Name, u.Age, time.Now())
+	_, err := a.DB.Exec(query, u.ID, u.Name, u.Age, a.TimeNow)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -47,7 +48,7 @@ func (a API) Select(w http.ResponseWriter, _ *http.Request) {
 	const query = `SELECT id, name, age, create_time FROM account`
 
 	allUser := []account{}
-	
+
 	rows, err := a.DB.Query(query)
 	if err != nil {
 		log.Error("error:", err)
