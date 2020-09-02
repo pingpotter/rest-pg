@@ -1,7 +1,7 @@
 # Dockerfile References: https://docs.docker.com/engine/reference/builder/
 
 # Start from the latest golang base image
-FROM golang:1.15.0-alpine3.12 as stage1
+FROM golang:1.15.1-alpine3.12 as stage1
 
 # Add Maintainer Info
 LABEL maintainer="jiraphon sa."
